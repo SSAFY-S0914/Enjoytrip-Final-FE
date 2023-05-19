@@ -1,6 +1,8 @@
 <template>
   <div class="center-wrapper">
-    <div>로고</div>
+    <div>
+      <router-link to="/home">로고</router-link>
+    </div>
     <div>
       <input type="text" class="main-searchbar" placeholder="어디로 가실" />
       <b-button class="main-searchbar-btn" variant="secondary">

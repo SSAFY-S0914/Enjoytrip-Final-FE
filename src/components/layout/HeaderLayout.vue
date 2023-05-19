@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="shadow p-3 mb-5 bg-white rounded">
     <nav class="navbar">
       <a class="navbar-brand" href="#">
         <!-- <img src="@/assets/images/tmp.png" alt="" /> -->
@@ -49,6 +49,10 @@ export default {
 </script>
 
 <style scoped>
+header {
+  border-bottom: 1px solid lightgray;
+}
+
 header .navbar {
   display: flex;
   justify-content: space-between;
