@@ -4,4 +4,8 @@
   </div>
 </template>
 
-<style></style>
+<script></script>
+
+<style>
+@import "@/assets/css/reset.css";
+</style>
