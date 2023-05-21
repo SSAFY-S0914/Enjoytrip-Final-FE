@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import InitView from "@/views/InitView";
 import HomeView from "@/views/HomeView";
+import ProductDetailView from "@/views/ProductDetailView";
 
 Vue.use(VueRouter);
 
@@ -15,6 +16,11 @@ const routes = [
     path: "/home",
     name: "home",
     component: HomeView,
+  },
+  {
+    path: "/products/:productId",
+    name: "productDetail",
+    component: ProductDetailView,
   },
 ];
 
