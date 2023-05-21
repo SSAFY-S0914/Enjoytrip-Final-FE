@@ -52,6 +52,7 @@ export default {
 <style scoped>
 header {
   border-bottom: 1px solid lightgray;
+  display: flex;
 }
 
 header .navbar {

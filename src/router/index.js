@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import InitView from "@/views/InitView";
 import HomeView from "@/views/HomeView";
 import ProductDetailView from "@/views/ProductDetailView";
+import ProfileView from "@/views/ProfileView";
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,11 @@ const routes = [
     path: "/products/:productId",
     name: "productDetail",
     component: ProductDetailView,
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    component: ProfileView,
   },
 ];
 
