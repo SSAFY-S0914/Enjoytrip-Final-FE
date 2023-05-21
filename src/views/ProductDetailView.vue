@@ -3,7 +3,7 @@
     <HeaderLayout></HeaderLayout>
     <main class="container">
       <ProductDetailSection></ProductDetailSection>
-      <CommentSection></CommentSection>
+      <CommentSection class="mt-5"></CommentSection>
     </main>
     <FooterLayout></FooterLayout>
   </div>
