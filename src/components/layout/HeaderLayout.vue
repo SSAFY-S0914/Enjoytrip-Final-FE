@@ -1,7 +1,8 @@
 <template>
   <header class="shadow p-3 mb-5 bg-white rounded">
     <nav class="navbar">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/">
+        <span>로고</span>
         <!-- <img src="@/assets/images/tmp.png" alt="" /> -->
       </a>
       <div class="header__inner">

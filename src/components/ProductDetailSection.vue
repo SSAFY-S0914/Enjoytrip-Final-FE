@@ -7,6 +7,9 @@
       />
     </div>
     <div class="product-detail-info">
+      <div class="product-detail-btn">
+        <b-button variant="danger"><i class="fa-regular fa-heart"></i></b-button>
+      </div>
       <div class="product-detail-content">
         <span class="info-content__title">K-핸드메이드페어 2023</span>
       </div>
@@ -52,6 +55,11 @@ export default {
 
 .product-detail-img img {
   width: 100%;
+}
+
+.product-detail-btn {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .product-detail-content {
