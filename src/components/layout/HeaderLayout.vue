@@ -6,17 +6,9 @@
         <!-- <img src="@/assets/images/tmp.png" alt="" /> -->
       </a>
       <div class="header__inner">
-        <!-- <div class="before-login" v-if="accesstoken == ''" @click="logIn">로그인</div> -->
-        <div
-          class="before-login"
-          v-if="accesstoken == undefined"
-          style="display: flex; color: black"
-        >
-          <a href="http://localhost:8080/oauth2/authorization/google">구글 로그인 | </a>
-          <!-- 라우터 링크 -->
-          <a>일반 로그인 |</a>
-          <a>회원 가입</a>
-        </div>
+        <a href="/login" v-if="accesstoken == undefined">
+          <b-button class="login"> 로그인 </b-button>
+        </a>
         <div class="profile-dropdown" v-else>
           <b-dropdown
             id="dropdown-right"
@@ -75,8 +67,6 @@ export default {
       this.accesstoken = undefined;
     },
     Profile() {
-      // console.log(this.$router);
-      // console.log(this.$route.path);
       if (this.$route.path != "/profile") {
         this.$router.push("/profile");
       }
@@ -108,5 +98,10 @@ header .navbar {
   align-items: center;
   font-size: 2rem;
   color: white;
+}
+
+.header__inner > * {
+  display: flex;
+  align-items: center;
 }
 </style>
