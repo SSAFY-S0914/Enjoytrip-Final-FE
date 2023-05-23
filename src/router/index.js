@@ -4,6 +4,7 @@ import InitView from "@/views/InitView";
 import HomeView from "@/views/HomeView";
 import ProductDetailView from "@/views/ProductDetailView";
 import ProfileView from "@/views/ProfileView";
+import TokenInfo from "@/views/TokenInfo";
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,11 @@ const routes = [
     path: "/profile",
     name: "profile",
     component: ProfileView,
+  },
+  {
+    path: "/tokeninfo",
+    name: "tokeninfo",
+    component: TokenInfo,
   },
 ];
 
