@@ -1,23 +1,15 @@
 <template>
   <div>
-    <HeaderLayout></HeaderLayout>
-    <main class="container">
-      <InfoSection :options="options"></InfoSection>
-    </main>
-    <FooterLayout></FooterLayout>
+    <InfoSection :options="options"></InfoSection>
   </div>
 </template>
 
 <script>
-import HeaderLayout from "@/components/layout/HeaderLayout.vue";
-import FooterLayout from "@/components/layout/FooterLayout.vue";
 import InfoSection from "@/components/common/InfoSection.vue";
 
 export default {
   name: "ProfileView",
   components: {
-    HeaderLayout,
-    FooterLayout,
     InfoSection,
   },
   data() {
