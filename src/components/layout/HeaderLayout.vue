@@ -6,10 +6,11 @@
         <!-- <img src="@/assets/images/tmp.png" alt="" /> -->
       </a>
       <div class="header__inner">
-        <a href="/login" v-if="accesstoken == undefined">
+        <!-- v-if="accesstoken == undefined" -->
+        <a href="/login">
           <b-button class="login"> 로그인 </b-button>
         </a>
-        <div class="profile-dropdown" v-else>
+        <div class="profile-dropdown">
           <b-dropdown
             id="dropdown-right"
             right
@@ -68,7 +69,7 @@ export default {
     },
     Profile() {
       if (this.$route.path != "/profile") {
-        this.$router.push("/profile");
+        this.$router.push("/profile/setting");
       }
     },
   },

@@ -11,6 +11,7 @@ export default [
     children: [
       {
         path: "/profile/setting",
+        name: "profileSetting",
         component: ProfileSetting,
       },
       {
