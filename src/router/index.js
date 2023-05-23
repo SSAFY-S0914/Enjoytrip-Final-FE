@@ -4,6 +4,9 @@ import InitView from "@/views/InitView";
 import HomeView from "@/views/HomeView";
 import ProductDetailView from "@/views/ProductDetailView";
 import ProfileView from "@/views/ProfileView";
+import FollowSetting from "@/components/partial/ProfileSetting/FollowSetting";
+import LikeSetting from "@/components/partial/ProfileSetting/LikeSetting.vue";
+import ProfileSetting from "@/components/partial/ProfileSetting/ProfileSetting.vue";
 
 Vue.use(VueRouter);
 
@@ -27,6 +30,20 @@ const routes = [
     path: "/profile",
     name: "profile",
     component: ProfileView,
+    children: [
+      {
+        path: "/profile/setting",
+        component: ProfileSetting,
+      },
+      {
+        path: "/profile/mylike",
+        component: LikeSetting,
+      },
+      {
+        path: "/profile/myfollow",
+        component: FollowSetting,
+      },
+    ],
   },
 ];
 
