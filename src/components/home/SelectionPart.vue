@@ -21,6 +21,7 @@ export default {
 .selection-part {
   display: flex;
   flex-direction: column;
+  width: 30%;
 }
 
 select option[value="null"][disabled] {

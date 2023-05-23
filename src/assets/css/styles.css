@@ -20,6 +20,7 @@ header {
 
 .card-deck {
   display: grid !important;
+  place-items: center;
   grid-template-columns: repeat(4, 1fr);
   row-gap: 2rem;
   column-gap: 2rem;

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="dateselection-part">
     <label for="date-picker">{{ title }}</label>
     <b-form-datepicker id="date-picker" v-model="value"></b-form-datepicker>
   </div>
@@ -17,4 +17,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.dateselection-part {
+  width: 40%;
+}
+</style>

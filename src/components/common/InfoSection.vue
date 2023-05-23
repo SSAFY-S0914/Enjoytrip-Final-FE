@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import InfoList from "@/components/common/InfoSection.vue";
+import InfoList from "@/components/common/InfoList.vue";
 
 export default {
   name: "InfoSection",

@@ -1,10 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-//
-import InitView from "@/views/InitView";
+
+// import InitView from "@/views/InitView";
 import HomeView from "@/views/HomeView";
 
-//
 import productRouter from "./productRouter";
 import groupRouter from "./groupRouter";
 import profileRouter from "./profileRouter";
@@ -13,13 +12,13 @@ import memberRouter from "./memberRouter";
 Vue.use(VueRouter);
 
 const routes = [
+  // {
+  //   path: "/",
+  //   name: "init",
+  //   component: InitView,
+  // },
   {
     path: "/",
-    name: "init",
-    component: InitView,
-  },
-  {
-    path: "/home",
     name: "home",
     component: HomeView,
   },
