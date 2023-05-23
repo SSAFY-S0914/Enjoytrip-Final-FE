@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import DateSelectionPart from "./partial/DateSelectionPart.vue";
-import SelectionPart from "./partial/SelectionPart.vue";
+import DateSelectionPart from "@/components/home/DateSelectionPart.vue";
+import SelectionPart from "@/components/home/SelectionPart.vue";
 
 export default {
   name: "FilterSelection",

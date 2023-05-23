@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: "CardPart",
+  name: "SingleCardwImg",
   props: ["title", "src", "text", "url"],
 };
 </script>

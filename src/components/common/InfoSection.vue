@@ -1,19 +1,20 @@
 <template>
   <div class="info-container">
-    <InfoList class="info-list"></InfoList>
-    <InfoDetail class="info-detail"></InfoDetail>
+    <InfoList class="info-list" :options="options"></InfoList>
+    <div class="info-detail">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
-import InfoList from "@/components/InfoList.vue";
-import InfoDetail from "@/components/InfoDetail.vue";
+import InfoList from "@/components/common/InfoSection.vue";
 
 export default {
   name: "InfoSection",
+  props: ["options"],
   components: {
     InfoList,
-    InfoDetail,
   },
 };
 </script>
@@ -31,6 +32,5 @@ export default {
 
 .info-detail {
   width: 70%;
-  border: 1px solid black;
 }
 </style>

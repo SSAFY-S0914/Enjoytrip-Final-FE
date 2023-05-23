@@ -2,7 +2,8 @@
   <div>
     <HeaderLayout></HeaderLayout>
     <main class="container">
-      <InfoSection></InfoSection>
+      <ProductDetail></ProductDetail>
+      <CommentSection class="mt-5"></CommentSection>
     </main>
     <FooterLayout></FooterLayout>
   </div>
@@ -11,14 +12,16 @@
 <script>
 import HeaderLayout from "@/components/layout/HeaderLayout.vue";
 import FooterLayout from "@/components/layout/FooterLayout.vue";
-import InfoSection from "@/components/InfoSection.vue";
+import CommentSection from "@/components/CommentSection.vue";
+import ProductDetailSection from "@/components/product/ProductDetailSection.vue";
 
 export default {
-  name: "ProfileView",
+  name: "ProductDetailView",
   components: {
     HeaderLayout,
     FooterLayout,
-    InfoSection,
+    ProductDetail: ProductDetailSection,
+    CommentSection,
   },
 };
 </script>

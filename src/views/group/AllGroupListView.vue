@@ -17,7 +17,7 @@
 <script>
 import HeaderLayout from "@/components/layout/HeaderLayout.vue";
 import FooterLayout from "@/components/layout/FooterLayout.vue";
-import GroupList from "@/components/GroupList.vue";
+import GroupList from "@/components/group/GroupList.vue";
 
 export default {
   name: "AllGroupView",

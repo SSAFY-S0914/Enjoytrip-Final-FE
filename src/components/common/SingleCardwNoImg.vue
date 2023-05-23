@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: "CardWithNoImg",
+  name: "SingleCardwNoImg",
   props: ["title", "creator", "cnt", "url"],
 };
 </script>

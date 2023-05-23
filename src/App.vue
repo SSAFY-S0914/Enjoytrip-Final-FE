@@ -26,4 +26,11 @@ header {
   align-items: center;
   padding: 0 3rem;
 }
+
+.card-deck {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 2rem;
+  column-gap: 2rem;
+}
 </style>

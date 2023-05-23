@@ -1,13 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+//
 import InitView from "@/views/InitView";
 import HomeView from "@/views/HomeView";
-import ProductDetailView from "@/views/ProductDetailView";
-import ProfileView from "@/views/ProfileView";
-import FollowSetting from "@/components/partial/ProfileSetting/FollowSetting";
-import LikeSetting from "@/components/partial/ProfileSetting/LikeSetting.vue";
-import ProfileSetting from "@/components/partial/ProfileSetting/ProfileSetting.vue";
-import AllGroupView from "@/views/AllGroupView";
+
+//
+import productRouter from "./productRouter";
+import groupRouter from "./groupRouter";
+import profileRouter from "./profileRouter";
 
 Vue.use(VueRouter);
 
@@ -22,35 +22,10 @@ const routes = [
     name: "home",
     component: HomeView,
   },
-  {
-    path: "/products/:productId",
-    name: "productDetail",
-    component: ProductDetailView,
-  },
-  {
-    path: "/profile",
-    name: "profile",
-    component: ProfileView,
-    children: [
-      {
-        path: "/profile/setting",
-        component: ProfileSetting,
-      },
-      {
-        path: "/profile/mylike",
-        component: LikeSetting,
-      },
-      {
-        path: "/profile/myfollow",
-        component: FollowSetting,
-      },
-    ],
-  },
-  {
-    path: "/groups",
-    name: "allgroups",
-    component: AllGroupView,
-  },
+
+  productRouter,
+  groupRouter,
+  profileRouter,
 ];
 
 const router = new VueRouter({
