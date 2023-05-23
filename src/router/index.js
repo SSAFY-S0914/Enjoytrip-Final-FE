@@ -7,6 +7,7 @@ import ProfileView from "@/views/ProfileView";
 import FollowSetting from "@/components/partial/ProfileSetting/FollowSetting";
 import LikeSetting from "@/components/partial/ProfileSetting/LikeSetting.vue";
 import ProfileSetting from "@/components/partial/ProfileSetting/ProfileSetting.vue";
+import AllGroupView from "@/views/AllGroupView";
 
 Vue.use(VueRouter);
 
@@ -44,6 +45,11 @@ const routes = [
         component: FollowSetting,
       },
     ],
+  },
+  {
+    path: "/groups",
+    name: "allgroups",
+    component: AllGroupView,
   },
 ];
 
