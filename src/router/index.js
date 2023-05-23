@@ -1,34 +1,32 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import InitView from "@/views/InitView";
+
+// import InitView from "@/views/InitView";
 import HomeView from "@/views/HomeView";
-import ProductDetailView from "@/views/ProductDetailView";
-import ProfileView from "@/views/ProfileView";
+
+import productRouter from "./productRouter";
+import groupRouter from "./groupRouter";
+import profileRouter from "./profileRouter";
+import memberRouter from "./memberRouter";
 import TokenInfo from "@/views/TokenInfo";
 
 Vue.use(VueRouter);
 
 const routes = [
+  // {
+  //   path: "/",
+  //   name: "init",
+  //   component: InitView,
+  // },
   {
     path: "/",
-    name: "init",
-    component: InitView,
-  },
-  {
-    path: "/home",
     name: "home",
     component: HomeView,
   },
-  {
-    path: "/products/:productId",
-    name: "productDetail",
-    component: ProductDetailView,
-  },
-  {
-    path: "/profile",
-    name: "profile",
-    component: ProfileView,
-  },
+  ...productRouter,
+  ...groupRouter,
+  ...profileRouter,
+  ...memberRouter,
   {
     path: "/tokeninfo",
     name: "tokeninfo",

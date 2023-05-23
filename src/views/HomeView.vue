@@ -12,8 +12,8 @@
 <script>
 import HeaderLayout from "@/components/layout/HeaderLayout.vue";
 import FooterLayout from "@/components/layout/FooterLayout.vue";
-import FilterSelection from "@/components/FilterSelection.vue";
-import SearchResult from "@/components/SearchResult.vue";
+import FilterSelection from "@/components/home/FilterSelection.vue";
+import SearchResult from "@/components/home/SearchResult.vue";
 
 export default {
   name: "HomeView",
