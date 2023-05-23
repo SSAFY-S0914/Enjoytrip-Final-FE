@@ -15,12 +15,22 @@
 
                 <form>
                   <div class="form-outline mb-4">
-                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
+                    <input
+                      type="text"
+                      id="form3Example1cg"
+                      class="form-control form-control-lg"
+                      v-model="form.username"
+                    />
                     <label class="form-label" for="form3Example1cg">Your Name</label>
                   </div>
 
                   <div class="form-outline mb-4">
-                    <input type="email" id="form3Example3cg" class="form-control form-control-lg" />
+                    <input
+                      type="email"
+                      id="form3Example3cg"
+                      class="form-control form-control-lg"
+                      v-model="form.useremail"
+                    />
                     <label class="form-label" for="form3Example3cg">Your Email</label>
                   </div>
 
@@ -29,6 +39,7 @@
                       type="password"
                       id="form3Example4cg"
                       class="form-control form-control-lg"
+                      v-model="form.userpw"
                     />
                     <label class="form-label" for="form3Example4cg">Password</label>
                   </div>
@@ -38,11 +49,12 @@
                       type="password"
                       id="form3Example4cdg"
                       class="form-control form-control-lg"
+                      v-model="form.checkpw"
                     />
                     <label class="form-label" for="form3Example4cdg">Repeat your password</label>
                   </div>
 
-                  <div class="form-check d-flex justify-content-center mb-5">
+                  <!-- <div class="form-check d-flex justify-content-center mb-5">
                     <input
                       class="form-check-input me-2"
                       type="checkbox"
@@ -53,12 +65,16 @@
                       I agree all statements in
                       <a href="#!" class="text-body"><u>Terms of service</u></a>
                     </label>
-                  </div>
+                  </div> -->
+                  <b-card class="mt-3" header="Form Data Result">
+                    <pre class="m-0">{{ form }}</pre>
+                  </b-card>
 
                   <div class="d-flex justify-content-center">
                     <button
                       type="button"
                       class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                      @click="onSubmit"
                     >
                       Register
                     </button>
@@ -79,8 +95,40 @@
 </template>
 
 <script>
+import http from "@/axios/axios-common.js";
 export default {
   name: "SignupSection",
+  data() {
+    return {
+      form: {
+        username: "",
+        useremail: "",
+        userpw: "",
+        checkpw: "",
+      },
+    };
+  },
+  methods: {
+    onSubmit() {
+      if (this.form.userpw == this.form.checkpw) {
+        // alert(JSON.stringify(this.form));
+        http
+          .post("/members/test", {
+            name: this.form.username,
+            password: this.form.userpw,
+            email: this.form.useremail,
+          })
+          .then(() => {
+            // 등록 성공 메세지 출력
+            alert("등록이 완료되었습니다.");
+            // 목록 페이지로 이동하기
+            this.$router.push({ path: `/` });
+          });
+      } else {
+        alert("비밀번호를 확인해 주세요");
+      }
+    },
+  },
 };
 </script>
 
