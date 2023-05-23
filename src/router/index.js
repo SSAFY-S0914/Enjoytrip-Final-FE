@@ -8,6 +8,7 @@ import HomeView from "@/views/HomeView";
 import productRouter from "./productRouter";
 import groupRouter from "./groupRouter";
 import profileRouter from "./profileRouter";
+import memberRouter from "./memberRouter";
 
 Vue.use(VueRouter);
 
@@ -23,9 +24,10 @@ const routes = [
     component: HomeView,
   },
 
-  productRouter,
-  groupRouter,
-  profileRouter,
+  ...productRouter,
+  ...groupRouter,
+  ...profileRouter,
+  ...memberRouter,
 ];
 
 const router = new VueRouter({
