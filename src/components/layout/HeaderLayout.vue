@@ -77,8 +77,8 @@ export default {
     Profile() {
       // console.log(this.$router);
       // console.log(this.$route.path);
-      if (this.$route.path != "/profile") {
-        this.$router.push("/profile");
+      if (this.$route.path != "/profile/setting") {
+        this.$router.push("/profile/setting");
       }
     },
   },
