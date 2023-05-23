@@ -38,9 +38,8 @@
             no-caret
           >
             <template #button-content><i class="fa-solid fa-bars"></i></template>
-            <b-dropdown-item href="#">Action</b-dropdown-item>
-            <b-dropdown-item href="#">Another action</b-dropdown-item>
-            <b-dropdown-item href="#">Something else here</b-dropdown-item>
+            <b-dropdown-item @click="toGroupView">그룹 보기</b-dropdown-item>
+            <b-dropdown-item @click="toPostView">게시글 보기</b-dropdown-item>
           </b-dropdown>
         </div>
       </div>
@@ -67,10 +66,16 @@ export default {
       sessionStorage.clear();
       this.accesstoken = undefined;
     },
-    Profile() {
-      if (this.$route.path != "/profile") {
-        this.$router.push("/profile/setting");
+    moveLink(url) {
+      if (this.$route.path != url) {
+        this.$router.push(url);
       }
+    },
+    Profile() {
+      this.moveLink("/profile/setting");
+    },
+    toGroupView() {
+      this.moveLink("/groups");
     },
   },
 };
