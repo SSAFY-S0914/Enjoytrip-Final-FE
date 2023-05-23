@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-tabs content-class="mt-3" justified>
-      <b-tab title="관광지 검색" pills active>
+    <b-tabs content-class="mt-3" justified class="box-shadow pb-5">
+      <b-tab title="관광지 검색" active>
         <form class="selection-tab">
           <div class="selection-tab__row">
             <SelectionPart :data="contentType" :title="'카테고리'"></SelectionPart>
@@ -9,7 +9,7 @@
             <SelectionPart :data="sigugunCode" :title="'시군구'"></SelectionPart>
           </div>
           <div class="selection-tab__row searchbar">
-            <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+            <div class="p-1 bg-light rounded rounded-pill shadow-sm">
               <div class="input-group">
                 <input
                   type="search"
@@ -44,10 +44,10 @@
           </div>
         </form>
       </b-tab>
+      <div class="search-btn">
+        <b-button class="main-searchbar-btn" variant="secondary">검색</b-button>
+      </div>
     </b-tabs>
-    <div class="search-btn">
-      <b-button class="main-searchbar-btn" variant="secondary">검색</b-button>
-    </div>
   </div>
 </template>
 
