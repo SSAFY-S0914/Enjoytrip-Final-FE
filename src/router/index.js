@@ -9,6 +9,7 @@ import groupRouter from "./groupRouter";
 import profileRouter from "./profileRouter";
 import memberRouter from "./memberRouter";
 import TokenInfo from "@/views/TokenInfo";
+import postRouter from "./postRouter";
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,7 @@ const routes = [
   ...groupRouter,
   ...profileRouter,
   ...memberRouter,
+  ...postRouter,
   {
     path: "/tokeninfo",
     name: "tokeninfo",

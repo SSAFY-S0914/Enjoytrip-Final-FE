@@ -80,6 +80,9 @@ export default {
     toGroupView() {
       this.moveLink("/groups");
     },
+    toPostView() {
+      this.moveLink("/posts");
+    },
   },
 };
 </script>
