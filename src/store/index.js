@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 // module import
-import productStore from "@/store/modules/productStore";
+import productStore from "./modules/productStore.js";
 
 Vue.use(Vuex);
 

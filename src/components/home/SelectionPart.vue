@@ -1,20 +1,34 @@
 <template>
   <div class="selection-part">
     <label for="category">{{ title }}</label>
-    <b-form-select id="category" v-model="selected" :options="data.options"></b-form-select>
+    <b-form-select
+      id="category"
+      v-model="selected"
+      :options="data"
+      @change="changeSelected"
+    ></b-form-select>
   </div>
 </template>
 
 <script>
 export default {
   name: "SelectionPart",
-  props: ["title", "data"],
+  props: ["title", "data", "areaCode"],
   data() {
     return {
       selected: null,
     };
   },
-  methods: {},
+  watch: {
+    areaCode() {
+      this.selected = null;
+    },
+  },
+  methods: {
+    changeSelected() {
+      this.$emit("selectItem", this.selected);
+    },
+  },
 };
 </script>
 

@@ -4,29 +4,15 @@
       <b-tab title="관광지 검색" active>
         <form class="selection-tab">
           <DefaultSelection class="selection-tab__row"></DefaultSelection>
-          <div class="selection-tab__row searchbar">
-            <div class="p-1 bg-light rounded rounded-pill shadow-sm">
-              <div class="input-group">
-                <input
-                  type="search"
-                  placeholder="What're you searching for?"
-                  aria-describedby="button-addon1"
-                  class="form-control border-0 bg-light"
-                />
-              </div>
-            </div>
-          </div>
+          <SearchBar class="selection-tab__row searchbar"></SearchBar>
         </form>
       </b-tab>
       <b-tab title="행사 검색">
         <form class="selection-tab">
           <DefaultSelection class="selection-tab__row"></DefaultSelection>
           <div class="selection-tab__row">
-            <DateSelectionPart
-              :title="'시작일(필수)'"
-              :datePickerId="'eventStartDate'"
-            ></DateSelectionPart>
-            <DateSelectionPart :title="'종료일'" :datePickerId="'eventEndDate'"></DateSelectionPart>
+            <DateSelection :title="'시작일(필수)'" :datePickerId="'eventStartDate'"></DateSelection>
+            <DateSelection :title="'종료일'" :datePickerId="'eventEndDate'"></DateSelection>
           </div>
         </form>
       </b-tab>
@@ -43,17 +29,16 @@
 </template>
 
 <script>
-import DateSelectionPart from "@/components/home/DateSelectionPart.vue";
-import SelectionPart from "@/components/home/SelectionPart.vue";
-import Constant from "@/util/Constant";
+import DateSelection from "./DateSelection.vue";
 import DefaultSelection from "./DefaultSelection.vue";
+import SearchBar from "./SearchBar.vue";
 
 export default {
   name: "FilterSelection",
   components: {
-    SelectionPart,
-    DateSelectionPart,
+    DateSelection,
     DefaultSelection,
+    SearchBar,
   },
   data() {
     return {};
@@ -86,14 +71,6 @@ export default {
 
 .searchbar > div {
   width: 60%;
-}
-
-.input-group {
-  width: 100%;
-}
-
-.form-control:focus {
-  box-shadow: none;
 }
 
 .search-btn {
