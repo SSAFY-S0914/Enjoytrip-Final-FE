@@ -7,13 +7,10 @@
       </a>
       <div class="header__inner">
         <!-- v-if="accesstoken == undefined" -->
-        <a href="/login" class="mr-2">
-          <b-button> 로그인 </b-button>
+        <a href="/login" v-if="accesstoken == undefined">
+          <b-button class="login"> 로그인 </b-button>
         </a>
-        <a href="/signup">
-          <b-button> 회원가입 </b-button>
-        </a>
-        <div class="profile-dropdown">
+        <div class="profile-dropdown" v-else>
           <b-dropdown
             id="dropdown-right"
             right
@@ -62,7 +59,7 @@ export default {
   },
   mounted() {
     this.accesstoken = sessionStorage.accesstoken;
-    console.log(this.accesstoken);
+    // console.log(this.accesstoken);
   },
   methods: {
     Logout() {

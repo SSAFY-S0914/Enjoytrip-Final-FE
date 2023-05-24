@@ -6,14 +6,12 @@
 export default {
   name: "tokenInfo",
   created() {
-    let href = new URL(location.href).searchParams;
     let accesstoken = new URL(location.href).searchParams.get("access_token");
     let refreshtoken = new URL(location.href).searchParams.get("refresh_token");
     // localStorage.setItem("href", href);
     // localStorage.setItem("accesstoken", accesstoken);
     // localStorage.setItem("refreshtoken", refreshtoken);
 
-    sessionStorage.setItem("href", href);
     sessionStorage.setItem("accesstoken", accesstoken);
     sessionStorage.setItem("refreshtoken", refreshtoken);
     // location.href = "my-page.html";
