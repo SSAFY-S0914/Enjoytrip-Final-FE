@@ -15,6 +15,7 @@
                     id="typeEmailX"
                     class="form-control form-control-lg"
                     placeholder="Email"
+                    v-model="form.useremail"
                   />
                 </div>
 
@@ -24,6 +25,7 @@
                     id="typePasswordX"
                     class="form-control form-control-lg"
                     placeholder="Password"
+                    v-model="form.userpw"
                   />
                 </div>
 
@@ -31,7 +33,7 @@
                   <a class="text-white-50" href="#!">Forgot password?</a>
                 </p>
 
-                <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                <button class="btn btn-outline-light btn-lg px-5" @click="onSubmit">Login</button>
 
                 <div class="d-flex justify-content-center text-center mt-4 pt-1">
                   <a href="http://localhost:8080/oauth2/authorization/google" class="text-white"
@@ -45,6 +47,10 @@
                   Don't have an account? <a href="/signup" class="text-white-50 fw-bold">Sign Up</a>
                 </p>
               </div>
+
+              <b-card class="mt-3" header="Form Data Result">
+                <pre class="m-0">{{ form }}</pre>
+              </b-card>
             </div>
           </div>
         </div>
@@ -54,8 +60,39 @@
 </template>
 
 <script>
+import http from "@/axios/axios-common.js";
 export default {
   name: "LoginSection",
+  data() {
+    return {
+      form: {
+        useremail: "",
+        userpw: "",
+      },
+    };
+  },
+  methods: {
+    onSubmit() {
+      // alert(JSON.stringify(this.form));
+      http
+        .post("/auth/login", {
+          email: this.form.useremail,
+          password: this.form.userpw,
+        })
+        .then((response) => {
+          // 등록 성공 메세지 출력
+          alert("로그인이 완료되었습니다.");
+          // header 에서 token 추출
+          const authorization = response.headers["authorization"];
+          const refresh = response.headers["refresh"];
+          sessionStorage.setItem("accesstoken", authorization);
+          sessionStorage.setItem("refresh", refresh);
+          // 목록 페이지로 이동하기
+          this.$router.push({ path: `/` });
+        })
+        .catch((exp) => alert("이메일 혹은 패스워드를 확인해주십시오." + exp));
+    },
+  },
 };
 </script>
 

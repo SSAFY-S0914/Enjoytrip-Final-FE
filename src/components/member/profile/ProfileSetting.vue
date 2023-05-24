@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import http from "@/axios/axios-common.js";
 export default {
   name: "ProfileSetting",
   data() {
@@ -81,6 +82,20 @@ export default {
       // foods: [{ text: "Select One", value: null }, "Carrots", "Beans", "Tomatoes", "Corn"],
       show: true,
     };
+  },
+  mounted() {
+    if (sessionStorage.accesstoken != null) {
+      http
+        .get("/members/1", {
+          headers: {
+            Authorization: sessionStorage.accesstoken,
+          },
+        })
+        .then((response) => {
+          // this.form.name = response.
+          console.log(response);
+        });
+    }
   },
   methods: {
     onSubmit(event) {

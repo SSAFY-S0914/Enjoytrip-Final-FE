@@ -113,7 +113,7 @@ export default {
       if (this.form.userpw == this.form.checkpw) {
         // alert(JSON.stringify(this.form));
         http
-          .post("/members/test", {
+          .post("/members", {
             name: this.form.username,
             password: this.form.userpw,
             email: this.form.useremail,
