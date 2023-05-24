@@ -8,12 +8,13 @@
 <script>
 export default {
   name: "SelectionPart",
-  props: ["data", "title"],
+  props: ["title", "data"],
   data() {
     return {
       selected: null,
     };
   },
+  methods: {},
 };
 </script>
 
