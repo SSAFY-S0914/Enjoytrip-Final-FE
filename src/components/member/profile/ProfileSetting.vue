@@ -5,14 +5,14 @@
         <b-form-input id="input-2" v-model="form.name" placeholder="이름" required></b-form-input>
       </b-form-group>
 
-      <b-form-group class="form-group" id="input-group-2" label="생년월일" label-for="input-2">
+      <!-- <b-form-group class="form-group" id="input-group-2" label="생년월일" label-for="input-2">
         <b-form-input
           id="input-2"
           v-model="form.birth"
           placeholder="Enter name"
           required
         ></b-form-input>
-      </b-form-group>
+      </b-form-group> -->
 
       <b-form-group class="form-group" id="input-group-2" label="닉네임" label-for="input-2">
         <b-form-input
@@ -33,7 +33,7 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group class="form-group" id="input-group-2" label="비밀번호" label-for="input-2">
+      <!-- <b-form-group class="form-group" id="input-group-2" label="비밀번호" label-for="input-2">
         <b-form-input
           id="input-2"
           v-model="form.password"
@@ -49,7 +49,7 @@
           placeholder="Enter name"
           required
         ></b-form-input>
-      </b-form-group>
+      </b-form-group> -->
 
       <div class="form-btn">
         <b-button class="mr-2" type="submit" variant="primary">수정하기</b-button>
@@ -57,14 +57,14 @@
         <b-button class="mr-2" variant="danger" @click="onDelete">회원 탈퇴</b-button>
       </div>
     </b-form>
-    <b-card class="mt-3" header="Form Data Result">
+    <!-- <b-card class="mt-3" header="Form Data Result">
       <pre class="m-0">{{ form }}</pre>
-    </b-card>
+    </b-card> -->
   </div>
 </template>
 
 <script>
-// import { apiInstance } from "@/api/index.js";
+import { apiInstance } from "@/api/index.js";
 export default {
   name: "ProfileSetting",
   data() {
@@ -72,12 +72,12 @@ export default {
       id: "",
       form: {
         name: "",
-        birth: "",
-        email: "",
+        // birth: "",
+        // email: "",
         nickname: "",
         useremail: "",
-        password: "",
-        checkpw: "",
+        // password: "",
+        // checkpw: "",
         // food: null,
         checked: [],
       },
@@ -87,23 +87,34 @@ export default {
   },
   mounted() {
     this.id = sessionStorage.id;
-    console.log(this.id);
+    this.onMount(this.id);
   },
   methods: {
-    onSubmit(event) {
-      event.preventDefault();
-      // alert(JSON.stringify(this.form));
+    onSubmit() {
+      // event.preventDefault();
+      const api = apiInstance();
+        api
+          .patch("/members/"+this.id, {
+            name: this.form.name,
+            // birth: this.form.birth,
+            nickname: this.form.nickname,
+            email: this.form.useremail
+          })
+          .then(() => {
+            this.onMount(this.id)
+          })
+        .catch(() => alert(this.id));
     },
     onReset(event) {
       event.preventDefault();
       // Reset our form values
-      this.form.name = "";
-      this.form.birth = "";
-      this.form.email = "";
-      this.form.nickname = "";
-      this.form.useremail = "";
-      this.form.password = "";
-      this.form.checkpw = "";
+      // this.form.name = "";
+      // this.form.birth = "";
+      // this.form.nickname = "";
+      // this.form.useremail = "";
+      // this.form.password = "";
+      // this.form.checkpw = "";
+      this.onMount(this.id);
 
       // this.form.food = null;
       // this.form.checked = [];
@@ -116,6 +127,18 @@ export default {
     onDelete() {
       this.$router.push("/profile/delete");
     },
+    onMount(id){
+      const api = apiInstance();
+      api
+        .get("/members/" + id)
+        .then(response => {
+          this.form.name = response.data.data.name;
+          // this.form.birth = response.data.data.birth;
+          this.form.nickname = response.data.data.nickname;
+          this.form.useremail = response.data.data.email;
+        })
+        .catch(() => alert(this.id));
+    }
   },
 };
 </script>

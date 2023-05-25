@@ -7,7 +7,7 @@
       </a>
       <div class="header__inner">
         <!-- v-if="accesstoken == undefined" -->
-        <a href="/login" v-if="!isLogin && accesstoken == undefined">
+        <a href="/login" v-if="!isLogin">
           <!-- <a href="/login" v-if="accesstoken == null"> -->
           <b-button class="login"> 로그인 </b-button>
         </a>

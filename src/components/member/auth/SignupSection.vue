@@ -66,9 +66,9 @@
                       <a href="#!" class="text-body"><u>Terms of service</u></a>
                     </label>
                   </div> -->
-                  <b-card class="mt-3" header="Form Data Result">
+                  <!-- <b-card class="mt-3" header="Form Data Result">
                     <pre class="m-0">{{ form }}</pre>
-                  </b-card>
+                  </b-card> -->
 
                   <div class="d-flex justify-content-center">
                     <button

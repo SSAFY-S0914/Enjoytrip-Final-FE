@@ -9,11 +9,11 @@
       <b-button class="mr-2" @click="doDel" variant="danger">예</b-button>
       <b-button class="mr-2" @click="goHome" variant="primary">아니요</b-button>
     </div>
-    {{ id }}
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 import { mapMutations } from "vuex";
 import { apiInstance } from "@/api/index.js";
 export default {
@@ -25,7 +25,6 @@ export default {
   },
   mounted() {
     this.id = sessionStorage.id;
-    console.log(this.id);
   },
   methods: {
     ...mapMutations("MemberStore", ["SET_IS_LOGIN"]),
@@ -44,6 +43,9 @@ export default {
         })
         .catch(() => alert(this.id));
     },
+  },
+  computed: {
+    ...mapState("MemberStore", ["isLogin"]),
   },
 };
 </script>
