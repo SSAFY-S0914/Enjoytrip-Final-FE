@@ -12,9 +12,9 @@
     ></SelectionPart>
     <SelectionPart
       :title="'시군구'"
-      :data="sigugunCodeSelection"
+      :data="sigunguCodeSelection"
       :areaCode="selectedAreaCode"
-      @selectItem="selectSigugunCode"
+      @selectItem="selectSigunguCode"
     ></SelectionPart>
   </div>
 </template>
@@ -40,27 +40,27 @@ export default {
   computed: {
     ...mapState(productStore, ["contentTypeSelection"]),
     ...mapState(productStore, ["areaCodeSelection"]),
-    ...mapState(productStore, ["sigugunCodeSelection"]),
+    ...mapState(productStore, ["sigunguCodeSelection"]),
     ...mapState(productStore, ["selectedAreaCode"]),
   },
   methods: {
     ...mapActions(productStore, ["setCategories"]),
     ...mapActions(productStore, ["setAreaCodes"]),
-    ...mapActions(productStore, ["setSigugunCodes"]),
-    ...mapMutations(productStore, ["CLEAR_SIGUGUNCODE_LIST"]),
+    ...mapActions(productStore, ["setSigunguCodes"]),
+    ...mapMutations(productStore, ["CLEAR_SIGUNGUCODE_LIST"]),
     ...mapMutations(productStore, ["SET_SELECT_CONTENTTYPEID"]),
     ...mapMutations(productStore, ["SET_SELECT_AREACODE"]),
-    ...mapMutations(productStore, ["SET_SELECT_SIGUGUNCODE"]),
+    ...mapMutations(productStore, ["SET_SELECT_SIGUNGUCODE"]),
     selectContentType(contentTypeId) {
       this.SET_SELECT_CONTENTTYPEID(contentTypeId);
     },
     selectAreaCode(areaCode) {
-      this.CLEAR_SIGUGUNCODE_LIST();
-      this.setSigugunCodes(areaCode);
+      this.CLEAR_SIGUNGUCODE_LIST();
+      this.setSigunguCodes(areaCode);
       this.SET_SELECT_AREACODE(areaCode);
     },
-    selectSigugunCode(sigugunCode) {
-      this.SET_SELECT_SIGUGUNCODE(sigugunCode);
+    selectSigunguCode(sigunguCode) {
+      this.SET_SELECT_SIGUNGUCODE(sigunguCode);
     },
   },
 };
