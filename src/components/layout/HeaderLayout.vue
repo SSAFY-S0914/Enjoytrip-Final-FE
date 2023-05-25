@@ -2,8 +2,8 @@
   <header class="shadow p-3 mb-5 bg-white rounded">
     <nav class="navbar">
       <a class="navbar-brand" href="/">
-        <span>로고</span>
-        <!-- <img src="@/assets/images/tmp.png" alt="" /> -->
+        <!-- <span>로고</span> -->
+        <img src="@/assets/Logo.png" alt="" width="120px" height="110px" />
       </a>
       <div class="header__inner">
         <!-- v-if="accesstoken == undefined" -->
