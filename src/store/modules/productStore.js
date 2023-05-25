@@ -44,7 +44,7 @@ const productStore = {
       for (let idx = 0; idx < state.areaCodes.length; idx++) {
         const element = state.areaCodes[idx];
         if (element.code == areaCode) {
-          state.sigunguCodes = element.sigunguCodeList;
+          state.sigunguCodes = element.sigugunCodeList;
           break;
         }
       }
