@@ -1,18 +1,18 @@
 <template>
   <div>
-    <FilterSelection></FilterSelection>
+    <FilterTabs></FilterTabs>
     <SearchResult class="search-result"></SearchResult>
   </div>
 </template>
 
 <script>
-import FilterSelection from "@/components/home/FilterSelection.vue";
+import FilterTabs from "@/components/home/FilterTabs.vue";
 import SearchResult from "@/components/home/SearchResult.vue";
 
 export default {
   name: "HomeView",
   components: {
-    FilterSelection,
+    FilterTabs,
     SearchResult,
   },
 };

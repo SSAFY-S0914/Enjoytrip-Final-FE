@@ -3,7 +3,7 @@
     <b-card
       :title="title"
       :img-src="src"
-      img-alt="Image"
+      img-alt=""
       img-top
       tag="article"
       style="max-width: 20rem"
@@ -13,7 +13,7 @@
         {{ text }}
       </b-card-text>
 
-      <b-button :href="url" variant="primary">Go somewhere</b-button>
+      <b-button variant="primary" @click="moveDetail">Go somewhere</b-button>
     </b-card>
   </div>
 </template>
@@ -21,8 +21,22 @@
 <script>
 export default {
   name: "SingleCardwImg",
-  props: ["title", "src", "text", "url"],
+  props: ["title", "src", "text", "contentid"],
+  methods: {
+    moveDetail() {
+      this.$router.push({
+        name: "productDetail",
+        params: { contentId: this.contentid },
+      });
+    },
+  },
 };
 </script>
 
-<style></style>
+<style scoped>
+img {
+  width: 15rem;
+  height: 10rem;
+  object-fit: cover;
+}
+</style>

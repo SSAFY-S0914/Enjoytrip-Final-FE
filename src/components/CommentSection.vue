@@ -91,7 +91,7 @@
               <input class="form-input" type="text" placeholder="Your email" />
             </div>
           </div>
-          <div class="col-xs-12">
+          <div class="col-xs-12 textarea-tmp">
             <div class="form-group">
               <textarea class="form-input" required="" placeholder="Your text"></textarea>
             </div>
@@ -110,6 +110,9 @@ export default {
 </script>
 
 <style scoped>
+.textarea-tmp {
+  width: 100%;
+}
 .be-comment-block {
   margin-bottom: 50px !important;
   border: 1px solid #edeff2;

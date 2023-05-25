@@ -1,96 +1,14 @@
 <template>
   <div>
-    <h1>검색 결과</h1>
-    <b-card-group deck>
+    <h1>검색 결과({{ searchResult.totalCount }})</h1>
+    <b-card-group deckd>
       <SingleCard
-        :title="'Card Title'"
-        :src="'https://picsum.photos/600/300/?image=25'"
-        :text="'Some quick example text to build on the card title and make up the bulk of the card'"
-        :url="'#'"
-      ></SingleCard>
-      <SingleCard
-        :title="'Card Title'"
-        :src="'https://picsum.photos/600/300/?image=25'"
-        :text="'Some quick example text to build on the card title and make up the bulk of the card'"
-        :url="'#'"
-      ></SingleCard>
-      <SingleCard
-        :title="'Card Title'"
-        :src="'https://picsum.photos/600/300/?image=25'"
-        :text="'Some quick example text to build on the card title and make up the bulk of the card'"
-        :url="'#'"
-      ></SingleCard>
-      <SingleCard
-        :title="'Card Title'"
-        :src="'https://picsum.photos/600/300/?image=25'"
-        :text="'Some quick example text to build on the card title and make up the bulk of the card'"
-        :url="'#'"
-      ></SingleCard>
-      <SingleCard
-        :title="'Card Title'"
-        :src="'https://picsum.photos/600/300/?image=25'"
-        :text="'Some quick example text to build on the card title and make up the bulk of the card'"
-        :url="'#'"
-      ></SingleCard>
-      <SingleCard
-        :title="'Card Title'"
-        :src="'https://picsum.photos/600/300/?image=25'"
-        :text="'Some quick example text to build on the card title and make up the bulk of the card'"
-        :url="'#'"
-      ></SingleCard>
-      <SingleCard
-        :title="'Card Title'"
-        :src="'https://picsum.photos/600/300/?image=25'"
-        :text="'Some quick example text to build on the card title and make up the bulk of the card'"
-        :url="'#'"
-      ></SingleCard>
-      <SingleCard
-        :title="'Card Title'"
-        :src="'https://picsum.photos/600/300/?image=25'"
-        :text="'Some quick example text to build on the card title and make up the bulk of the card'"
-        :url="'#'"
-      ></SingleCard>
-      <SingleCard
-        :title="'Card Title'"
-        :src="'https://picsum.photos/600/300/?image=25'"
-        :text="'Some quick example text to build on the card title and make up the bulk of the card'"
-        :url="'#'"
-      ></SingleCard>
-      <SingleCard
-        :title="'Card Title'"
-        :src="'https://picsum.photos/600/300/?image=25'"
-        :text="'Some quick example text to build on the card title and make up the bulk of the card'"
-        :url="'#'"
-      ></SingleCard>
-      <SingleCard
-        :title="'Card Title'"
-        :src="'https://picsum.photos/600/300/?image=25'"
-        :text="'Some quick example text to build on the card title and make up the bulk of the card'"
-        :url="'#'"
-      ></SingleCard>
-      <SingleCard
-        :title="'Card Title'"
-        :src="'https://picsum.photos/600/300/?image=25'"
-        :text="'Some quick example text to build on the card title and make up the bulk of the card'"
-        :url="'#'"
-      ></SingleCard>
-      <SingleCard
-        :title="'Card Title'"
-        :src="'https://picsum.photos/600/300/?image=25'"
-        :text="'Some quick example text to build on the card title and make up the bulk of the card'"
-        :url="'#'"
-      ></SingleCard>
-      <SingleCard
-        :title="'Card Title'"
-        :src="'https://picsum.photos/600/300/?image=25'"
-        :text="'Some quick example text to build on the card title and make up the bulk of the card'"
-        :url="'#'"
-      ></SingleCard>
-      <SingleCard
-        :title="'Card Title'"
-        :src="'https://picsum.photos/600/300/?image=25'"
-        :text="'Some quick example text to build on the card title and make up the bulk of the card'"
-        :url="'#'"
+        v-for="(item, index) in searchResult.items.item"
+        :key="index"
+        :title="item.title"
+        :src="item.firstimage"
+        :text="item.addr1"
+        :contentid="item.contentid"
       ></SingleCard>
     </b-card-group>
   </div>
@@ -99,10 +17,17 @@
 <script>
 import SingleCardwImgVue from "../common/SingleCardwImg.vue";
 
+import { mapState } from "vuex";
+
+const productStore = "productStore";
+
 export default {
   name: "SearchResult",
   components: {
     SingleCard: SingleCardwImgVue,
+  },
+  computed: {
+    ...mapState(productStore, ["searchResult"]),
   },
 };
 </script>

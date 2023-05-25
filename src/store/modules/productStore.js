@@ -1,17 +1,30 @@
-import { fetchCategories, fetchAreaCodes } from "@/api/product";
+import {
+  fetchCategories,
+  fetchAreaCodes,
+  fetchProductByKeyword,
+  fetchProductByFestival,
+  fetchProductByStay,
+  fetchProductDetail,
+} from "@/api/product";
 
 const productStore = {
   namespaced: true,
   state: {
+    keyword: "",
     selectedContentTypeId: "",
     selectedAreaCode: "",
-    selectedSigugunCode: "",
+    selectedSigunguCode: "",
+    eventStartDate: "",
+    eventEndDate: "",
+
+    searchResult: {},
+    productDetail: {},
     contentTypes: [],
     contentTypeSelection: [{ value: null, text: "전체" }],
     areaCodes: [],
     areaCodeSelection: [{ value: null, text: "전체" }],
-    sigugunCodes: [],
-    sigugunCodeSelection: [{ value: null, text: "전체" }],
+    sigunguCodes: [],
+    sigunguCodeSelection: [{ value: null, text: "전체" }],
   },
   getters: {},
   mutations: {
@@ -27,20 +40,20 @@ const productStore = {
         state.areaCodeSelection.push({ value: item.code, text: item.name });
       });
     },
-    SET_SIGUGUNCODE_LIST(state, areaCode) {
+    SET_SIGUNGUCODE_LIST(state, areaCode) {
       for (let idx = 0; idx < state.areaCodes.length; idx++) {
         const element = state.areaCodes[idx];
         if (element.code == areaCode) {
-          state.sigugunCodes = element.sigugunCodeList;
+          state.sigunguCodes = element.sigunguCodeList;
           break;
         }
       }
-      state.sigugunCodes.forEach((item) => {
-        state.sigugunCodeSelection.push({ value: item.code, text: item.name });
+      state.sigunguCodes.forEach((item) => {
+        state.sigunguCodeSelection.push({ value: item.code, text: item.name });
       });
     },
-    CLEAR_SIGUGUNCODE_LIST(state) {
-      state.sigugunCodeSelection = [{ value: null, text: "전체" }];
+    CLEAR_SIGUNGUCODE_LIST(state) {
+      state.sigunguCodeSelection = [{ value: null, text: "전체" }];
     },
     SET_SELECT_CONTENTTYPEID(state, contentTypeId) {
       state.selectedContentTypeId = contentTypeId;
@@ -48,8 +61,32 @@ const productStore = {
     SET_SELECT_AREACODE(state, areaCode) {
       state.selectedAreaCode = areaCode;
     },
-    SET_SELECT_SIGUGUNCODE(state, sigugunCode) {
-      state.selectedSigugunCode = sigugunCode;
+    SET_SELECT_SIGUNGUCODE(state, sigunguCode) {
+      state.selectedSigunguCode = sigunguCode;
+    },
+    CLEAR_KEYWORD(state) {
+      state.keyword = "";
+    },
+    SET_KEYWORD(state, keyword) {
+      state.keyword = keyword;
+    },
+    CLREAR_ALL_SELECTED(state) {
+      state.keyword = "";
+      state.selectedContentTypeId = "";
+      state.selectedAreaCode = "";
+      state.selectedSigunguCode = "";
+    },
+    SET_EVENTSTARTDATE(state, eventStartDate) {
+      state.eventStartDate = eventStartDate;
+    },
+    SET_EVENTENDDATE(state, eventEndDate) {
+      state.eventEndDate = eventEndDate;
+    },
+    SET_SEARCH_RESULTS(state, products) {
+      state.searchResult = products;
+    },
+    SET_PRODUCT_DETAIL(state, product) {
+      state.productDetail = product.items.item[0];
     },
   },
   actions: {
@@ -59,7 +96,7 @@ const productStore = {
           commit("SET_CATEGORY_LIST", data.data);
         },
         (error) => {
-          console.log(error);
+          if (error) console.log(error);
         }
       );
     },
@@ -69,12 +106,72 @@ const productStore = {
           commit("SET_AREACODE_LIST", data.data);
         },
         (error) => {
-          console.log(error);
+          if (error) console.log(error);
         }
       );
     },
-    setSigugunCodes: ({ commit }, areaCode) => {
-      commit("SET_SIGUGUNCODE_LIST", areaCode);
+    setSigunguCodes: ({ commit }, areaCode) => {
+      commit("SET_SIGUNGUCODE_LIST", areaCode);
+    },
+    search: ({ commit, state }, tabIndex) => {
+      switch (tabIndex) {
+        case 0: {
+          const keyword = state.keyword;
+          if (keyword != undefined && keyword != "") {
+            fetchProductByKeyword(
+              {
+                keyword: keyword,
+                contentTypeId: state.selectedContentTypeId,
+                areaCode: state.selectedAreaCode,
+                sigunguCode: state.selectedSigunguCode,
+              },
+              ({ data }) => {
+                commit("SET_SEARCH_RESULTS", data.data);
+              },
+              (error) => {
+                commit("CLEAR_KEYWORD");
+                alert("검색 오류");
+                if (error) console.log(error);
+              }
+            );
+          }
+          break;
+        }
+        case 1: {
+          fetchProductByFestival(
+            { eventStartDate: state.eventStartDate },
+            ({ data }) => {
+              commit("SET_SEARCH_RESULTS", data.data);
+            },
+            (error) => {
+              if (error) console.log(error);
+            }
+          );
+          break;
+        }
+        case 2: {
+          fetchProductByStay(
+            ({ data }) => {
+              commit("SET_SEARCH_RESULTS", data.data);
+            },
+            (error) => {
+              if (error) console.log(error);
+            }
+          );
+          break;
+        }
+      }
+    },
+    searchDetail: ({ commit }, contentId) => {
+      fetchProductDetail(
+        { contentId },
+        ({ data }) => {
+          commit("SET_PRODUCT_DETAIL", data.data);
+        },
+        (error) => {
+          if (error) console.log(error);
+        }
+      );
     },
   },
 };
