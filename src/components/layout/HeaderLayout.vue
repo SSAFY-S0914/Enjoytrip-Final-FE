@@ -7,7 +7,7 @@
       </a>
       <div class="header__inner">
         <!-- v-if="accesstoken == undefined" -->
-        <a href="/login" v-if="!isLogin">
+        <a href="/login" v-if="!isLogin && accesstoken == undefined">
           <!-- <a href="/login" v-if="accesstoken == null"> -->
           <b-button class="login"> 로그인 </b-button>
         </a>
@@ -55,24 +55,24 @@ export default {
   name: "HeaderLayout",
   data() {
     return {
-      // accesstoken: "",
+      accesstoken: "",
+      // flag : false,
     };
   },
-  // watch: {
-  //   $sessionStorage() {
-  //     this.accesstoken = sessionStorage.accesstoken;
-  //     console.log("asd");
-  //   },
-  // },
-  // mounted() {
-  //   this.accesstoken = sessionStorage.accesstoken;
-  //   // console.log(this.accesstoken);
-  // },
+  watch: {
+    $sessionStorage() {
+      this.accesstoken = sessionStorage.accesstoken;
+    },
+  },
+  mounted() {
+    this.accesstoken = sessionStorage.accesstoken;
+    // console.log(this.accesstoken);
+  },
   methods: {
     ...mapMutations("MemberStore", ["SET_IS_LOGIN"]),
     Logout() {
       sessionStorage.clear();
-      // this.accesstoken = null;
+      this.accesstoken = undefined;
       this.SET_IS_LOGIN(false);
     },
     moveLink(url) {
