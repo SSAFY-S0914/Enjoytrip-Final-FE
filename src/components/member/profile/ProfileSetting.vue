@@ -53,7 +53,8 @@
 
       <div class="form-btn">
         <b-button class="mr-2" type="submit" variant="primary">수정하기</b-button>
-        <b-button type="reset" variant="danger">초기화</b-button>
+        <b-button class="mr-5" type="reset" variant="danger">초기화</b-button>
+        <b-button class="mr-2" variant="danger" @click="onDelete">회원 탈퇴</b-button>
       </div>
     </b-form>
     <b-card class="mt-3" header="Form Data Result">
@@ -63,11 +64,12 @@
 </template>
 
 <script>
-import http from "@/axios/axios-common.js";
+// import { apiInstance } from "@/api/index.js";
 export default {
   name: "ProfileSetting",
   data() {
     return {
+      id: "",
       form: {
         name: "",
         birth: "",
@@ -84,18 +86,8 @@ export default {
     };
   },
   mounted() {
-    if (sessionStorage.accesstoken != null) {
-      http
-        .get("/members/1", {
-          headers: {
-            Authorization: sessionStorage.accesstoken,
-          },
-        })
-        .then((response) => {
-          // this.form.name = response.
-          console.log(response);
-        });
-    }
+    this.id = sessionStorage.id;
+    console.log(this.id);
   },
   methods: {
     onSubmit(event) {
@@ -120,6 +112,9 @@ export default {
       this.$nextTick(() => {
         this.show = true;
       });
+    },
+    onDelete() {
+      this.$router.push("/profile/delete");
     },
   },
 };
