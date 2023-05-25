@@ -95,7 +95,7 @@
 </template>
 
 <script>
-import http from "@/axios/axios-common.js";
+import { apiInstance } from "@/api/index.js";
 export default {
   name: "SignupSection",
   data() {
@@ -110,9 +110,10 @@ export default {
   },
   methods: {
     onSubmit() {
+      const api = apiInstance();
       if (this.form.userpw == this.form.checkpw) {
         // alert(JSON.stringify(this.form));
-        http
+        api
           .post("/members", {
             name: this.form.username,
             password: this.form.userpw,

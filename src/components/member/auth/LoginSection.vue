@@ -30,7 +30,7 @@
                 </div>
 
                 <p class="small mb-5 pb-lg-2">
-                  <a class="text-white-50" href="#!">Forgot password?</a>
+                  <a class="text-white-50" href="/findPass">Forgot password?</a>
                 </p>
 
                 <button class="btn btn-outline-light btn-lg px-5" @click="onSubmit">Login</button>
@@ -60,7 +60,8 @@
 </template>
 
 <script>
-import http from "@/axios/axios-common.js";
+import { apiInstance } from "@/api/index.js";
+import { mapMutations } from "vuex";
 export default {
   name: "LoginSection",
   data() {
@@ -72,9 +73,12 @@ export default {
     };
   },
   methods: {
+    ...mapMutations("MemberStore", ["SET_IS_LOGIN"]),
     onSubmit() {
       // alert(JSON.stringify(this.form));
-      http
+
+      const api = apiInstance();
+      api
         .post("/auth/login", {
           email: this.form.useremail,
           password: this.form.userpw,
@@ -83,10 +87,13 @@ export default {
           // 등록 성공 메세지 출력
           alert("로그인이 완료되었습니다.");
           // header 에서 token 추출
+          this.SET_IS_LOGIN(true);
           const authorization = response.headers["authorization"];
           const refresh = response.headers["refresh"];
+          const id = response.headers["id"];
           sessionStorage.setItem("accesstoken", authorization);
           sessionStorage.setItem("refresh", refresh);
+          sessionStorage.setItem("id", id);
           // 목록 페이지로 이동하기
           this.$router.push({ path: `/` });
         })

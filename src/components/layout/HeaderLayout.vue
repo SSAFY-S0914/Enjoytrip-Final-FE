@@ -7,7 +7,8 @@
       </a>
       <div class="header__inner">
         <!-- v-if="accesstoken == undefined" -->
-        <a href="/login" v-if="accesstoken == undefined">
+        <a href="/login" v-if="!isLogin">
+          <!-- <a href="/login" v-if="accesstoken == null"> -->
           <b-button class="login"> 로그인 </b-button>
         </a>
         <div class="profile-dropdown" v-else>
@@ -48,23 +49,31 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+import { mapMutations } from "vuex";
 export default {
   name: "HeaderLayout",
   data() {
     return {
-      accesstoken: "",
-      sessionValue: "",
-      member: "",
+      // accesstoken: "",
     };
   },
-  mounted() {
-    this.accesstoken = sessionStorage.accesstoken;
-    // console.log(this.accesstoken);
-  },
+  // watch: {
+  //   $sessionStorage() {
+  //     this.accesstoken = sessionStorage.accesstoken;
+  //     console.log("asd");
+  //   },
+  // },
+  // mounted() {
+  //   this.accesstoken = sessionStorage.accesstoken;
+  //   // console.log(this.accesstoken);
+  // },
   methods: {
+    ...mapMutations("MemberStore", ["SET_IS_LOGIN"]),
     Logout() {
       sessionStorage.clear();
-      this.accesstoken = undefined;
+      // this.accesstoken = null;
+      this.SET_IS_LOGIN(false);
     },
     moveLink(url) {
       if (this.$route.path != url) {
@@ -80,6 +89,9 @@ export default {
     toPostView() {
       this.moveLink("/posts");
     },
+  },
+  computed: {
+    ...mapState("MemberStore", ["isLogin"]),
   },
 };
 </script>
